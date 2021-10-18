@@ -22,7 +22,7 @@ function App() {
             socket.onmessage = (message) => {
                 let data = JSON.parse(message.data)
                 if (data.message && data.message === "idRequest") {
-                    setConnectionID(data.connectionID)
+                    setConnectionID(data.connectionId)
                 } else {
                     console.log(data)
                     setIncomingMessage(

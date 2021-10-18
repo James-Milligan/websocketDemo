@@ -19,7 +19,7 @@ type ConnectionItem struct {
 }
 
 type ConnectionResponse struct {
-	ConnectionID string `json:"connectionID"`
+	ConnectionID string `json:"connectionId"`
 	Message string `json:"message"`
 }
 
