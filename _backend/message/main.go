@@ -9,16 +9,14 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/apigatewaymanagementapi"
-	"github.com/go-redis/redis"
 	"os"
 )
 
-var redisClient *redis.Client
 var apiGatewayClient *apigatewaymanagementapi.ApiGatewayManagementApi
 
 
 type MessageData struct {
-	Message      string `json:"message"`
+	Data      string `json:"data"`
 	ConnectionID string `json:"connectionId"`
 }
 
@@ -36,7 +34,6 @@ func main() {
 
 func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
-
 	var messageRequest MessageData
 	err := json.Unmarshal([]byte(request.Body), &messageRequest)
 	if err != nil {
@@ -46,17 +43,9 @@ func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events
 		}}, nil
 	}
 
-	jsonData, err := json.Marshal(messageRequest)
-	if err != nil {
-		fmt.Println(err)
-		return events.APIGatewayProxyResponse{Body: "Could not send message", StatusCode: 401, Headers: map[string]string{
-			"Access-Control-Allow-Origin": "*",
-		}}, nil
-	}
-
 	connectionInput := &apigatewaymanagementapi.PostToConnectionInput{
 		ConnectionId: aws.String(messageRequest.ConnectionID),
-		Data:         jsonData,
+		Data:         []byte(messageRequest.Data),
 	}
 	_, err = apiGatewayClient.PostToConnection(connectionInput)
 
