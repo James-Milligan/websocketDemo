@@ -89,8 +89,14 @@ async function sendMessage(target: string, message: string, values: string, setS
         return
     }
     try {
-        console.log(message.replace('XXX', '1'))
-        JSON.parse(message.replace('XXX', '1'));
+        let temp = message;
+        while (true) {
+            if (!JSON.stringify(temp).includes('XXX')) {
+                break;
+            }
+            temp = temp.replace('XXX', valuesArray[Math.floor(Math.random() * (valuesArray.length))]);
+        }
+        JSON.parse(temp.replace(/XXX/g, '1'));
     } catch {
         console.log("INVALID JSON");
         return
@@ -98,8 +104,14 @@ async function sendMessage(target: string, message: string, values: string, setS
     console.log(valuesArray)
     setSending(true);
     setInterval(async () => {
-        let rand = Math.floor(Math.random() * (valuesArray.length))
-        let temp = message.replace('XXX', valuesArray[rand]);
+        let temp = message;
+        while (true) {
+            if (!JSON.stringify(temp).includes('XXX')) {
+                break;
+            }
+            temp = temp.replace('XXX', valuesArray[Math.floor(Math.random() * (valuesArray.length))]);
+        }
+        
         await axios({
             url: "https://te922e897e.execute-api.eu-west-2.amazonaws.com/production/sendmessage",
             method: "POST",
