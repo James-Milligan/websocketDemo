@@ -150,6 +150,6 @@ async function sendMessage(target: string, message: string, values: string, setS
             })
         })
         console.log('sent')
-    }, 2000)
+    }, 10000)
     
 }
