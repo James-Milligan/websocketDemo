@@ -6,32 +6,64 @@ function App() {
 
     const [connectionID, setConnectionID] = useState<string>("");
     const [targetID, setTargetID] = useState("");
-    const [message, setMessage] = useState(`{"svg_16":"XXX",
-    "svg_17":"XXX",
-    "svg_18":"XXX",
-    "svg_19":"XXX",
-    "svg_6":"XXX",
-    "svg_23":"XXX",
-    "svg_5":"XXX",
-    "svg_24":"XXX",
-    "svg_4":"XXX",
-    "svg_25":"XXX",
-    "svg_3":"XXX",
-    "svg_26":"XXX",
-    "svg_9":"XXX",
-    "svg_20":"XXX",
-    "svg_8":"XXX",
-    "svg_21":"XXX",
-    "svg_7":"XXX",
-    "svg_22":"XXX",
-    "svg_2":"XXX",
-    "svg_1":"XXX",
-    "svg_12":"XXX",
-    "svg_13":"XXX",
-    "svg_14":"XXX",
-    "svg_15":"XXX",
-    "svg_10":"XXX",
-    "svg_11":"XXX"}`);
+    const [message, setMessage] = useState(`{
+        "farnham": {
+          "desks": {
+            "svg_16": "XXX",
+            "svg_17": "XXX",
+            "svg_18": "XXX",
+            "svg_19": "XXX",
+            "svg_6": "XXX",
+            "svg_23": "XXX",
+            "svg_5": "XXX",
+            "svg_24": "XXX",
+            "svg_4": "XXX",
+            "svg_25": "XXX",
+            "svg_3": "XXX",
+            "svg_26": "XXX",
+            "svg_9": "XXX",
+            "svg_20": "XXX",
+            "svg_8": "XXX",
+            "svg_21": "XXX",
+            "svg_7": "XXX",
+            "svg_22": "XXX",
+            "svg_2": "XXX",
+            "svg_1": "XXX",
+            "svg_12": "XXX",
+            "svg_13": "XXX",
+            "svg_14": "XXX",
+            "svg_15": "XXX",
+            "svg_10": "XXX",
+            "svg_11": "XXX"
+          }
+        },
+        "baldock": {
+          "desks": {
+            "svg_16": "XXX",
+            "svg_17": "XXX",
+            "svg_18": "XXX",
+            "svg_19": "XXX",
+            "svg_6": "XXX",
+            "svg_23": "XXX",
+            "svg_5": "XXX"
+          }
+        },
+        "cheshunt": {
+          "desks": {
+            "svg_9":"XXX",
+            "svg_20":"XXX",
+            "svg_8":"XXX",
+            "svg_21":"XXX",
+            "svg_7":"XXX",
+            "svg_22":"XXX",
+            "svg_2":"XXX",
+            "svg_1":"XXX",
+            "svg_12":"XXX",
+            "svg_13":"XXX",
+            "svg_14":"XXX"
+          }
+        }
+      }`);
     const [values, setValues] = useState("green,yellow,red");
 
     const [isSending, setSending] = useState(false);
@@ -150,6 +182,6 @@ async function sendMessage(target: string, message: string, values: string, setS
             })
         })
         console.log('sent')
-    }, 10000)
+    }, 3000)
     
 }
